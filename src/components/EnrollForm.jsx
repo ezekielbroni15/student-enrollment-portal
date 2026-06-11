@@ -8,16 +8,30 @@ const initialForm = {
   score: "",
 };
 
+const MIN_NAME_LETTERS = 3;
+
+const countLetters = (value) => {
+  return (value.match(/[a-z]/gi) || []).length;
+};
+
+const isValidEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
 const validateForm = ({ firstName, lastName, score }) => {
   const nextErrors = {};
   const scoreValue = Number(score);
 
   if (!firstName.trim()) {
     nextErrors.firstName = "First name is required.";
+  } else if (countLetters(firstName) < MIN_NAME_LETTERS) {
+    nextErrors.firstName = `First name must include at least ${MIN_NAME_LETTERS} letters.`;
   }
 
   if (!lastName.trim()) {
     nextErrors.lastName = "Last name is required.";
+  } else if (countLetters(lastName) < MIN_NAME_LETTERS) {
+    nextErrors.lastName = `Last name must include at least ${MIN_NAME_LETTERS} letters.`;
   }
 
   if (score === "" || scoreValue < 0 || scoreValue > 100) {
@@ -67,7 +81,7 @@ const EnrollForm = ({ tracks, onEnroll }) => {
     const isActive = activeRef.current.checked;
     const nextErrors = {
       ...validateForm(formData),
-      ...(!email.includes("@") ? { email: "Email must contain @." } : {}),
+      ...(!isValidEmail(email) ? { email: "Enter a valid email address." } : {}),
     };
 
     setErrors(nextErrors);

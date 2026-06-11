@@ -65,5 +65,5 @@ npm run build
 
 ## Submission Links
 
-- GitHub repository: https://github.com/ezekielbroni15/student-profile-dashboard
-- Hosted live link: Add the Vercel or Netlify URL after deployment.
+- GitHub repository: https://github.com/ezekielbroni15/student-enrollment-portal
+- Hosted live link: https://student-enrollment-portal-seven.vercel.app/
