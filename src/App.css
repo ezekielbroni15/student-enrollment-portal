@@ -1,0 +1,261 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #eef2f7;
+  color: #172033;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.header,
+.form-panel,
+.student-list,
+.actions-panel,
+.status-message {
+  background: #ffffff;
+  border: 1px solid #d9e2ef;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(23, 32, 51, 0.08);
+}
+
+.header {
+  margin-bottom: 24px;
+  padding: 28px;
+  border-left: 8px solid #116466;
+}
+
+.header h1,
+.form-panel h2,
+.student-list h2 {
+  margin: 0;
+}
+
+.header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.header p {
+  margin: 10px 0 0;
+  color: #536179;
+  font-weight: 700;
+}
+
+.form-panel,
+.student-list {
+  padding: 24px;
+}
+
+.form-panel {
+  margin-bottom: 18px;
+}
+
+form {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+fieldset {
+  margin: 0;
+  padding: 18px;
+  border: 1px solid #d8e0ec;
+  border-radius: 8px;
+}
+
+legend {
+  padding: 0 8px;
+  color: #116466;
+  font-weight: 700;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: #344158;
+  font-weight: 700;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid #bac7d8;
+  border-radius: 6px;
+  padding: 11px 12px;
+  color: #172033;
+  background: #ffffff;
+}
+
+input:focus,
+select:focus {
+  border-color: #116466;
+  outline: 3px solid rgba(17, 100, 102, 0.16);
+}
+
+.checkbox-label {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.checkbox-label input {
+  width: 18px;
+  height: 18px;
+}
+
+.preview-line {
+  margin: 0;
+  padding: 14px;
+  border-radius: 6px;
+  background: #eef8f7;
+  color: #116466;
+  font-weight: 700;
+}
+
+.button {
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 11px 18px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.primary-button {
+  justify-self: start;
+  background: #116466;
+  color: #ffffff;
+}
+
+.secondary-button {
+  background: #25324a;
+  color: #ffffff;
+}
+
+.actions-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 16px;
+}
+
+.status-message {
+  margin: 0 0 18px;
+  padding: 16px;
+  font-weight: 700;
+}
+
+.status-loading {
+  color: #25324a;
+}
+
+.status-error,
+.error-text {
+  color: #b42318;
+}
+
+.error-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.student-list {
+  margin-top: 18px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.student-card {
+  border: 1px solid #d8e0ec;
+  border-left: 6px solid #116466;
+  border-radius: 8px;
+  padding: 18px;
+  background: #ffffff;
+}
+
+.inactive-card {
+  border-left-color: #b42318;
+  background: #fff7f7;
+}
+
+.avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e6edf5;
+}
+
+.student-card h3 {
+  margin: 14px 0 8px;
+}
+
+.student-card p {
+  margin: 8px 0 0;
+  color: #536179;
+  overflow-wrap: anywhere;
+}
+
+.active-label {
+  color: #116466;
+  font-weight: 700;
+}
+
+.inactive-label {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.footer-message {
+  margin-top: 20px;
+  color: #536179;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .app {
+    width: min(100% - 20px, 1180px);
+    padding: 20px 0;
+  }
+
+  .header,
+  .form-panel,
+  .student-list {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
