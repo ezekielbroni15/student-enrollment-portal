@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import ClassButton from "./components/ClassButton";
-import EnrollForm from "./components/EnrollForm";
-import Header from "./components/Header";
-import StatusMessage from "./components/StatusMessage";
-import StudentList from "./components/StudentList";
+import Navbar from "./components/Navbar";
+import EnrollPage from "./pages/EnrollPage";
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import StudentDetailPage from "./pages/StudentDetailPage";
 
 const TRACKS = ["Frontend", "Backend", "Mobile", "Data"];
 
@@ -133,35 +134,42 @@ const App = () => {
   const averageScore = getAverage(students);
 
   return (
-    <main className="app">
-      <Header
-        title="KodeCamp 6.0 — Enrollment Portal"
-        studentCount={students.length}
-        averageScore={averageScore}
-      />
+    <>
+      <Navbar />
 
-      <EnrollForm tracks={TRACKS} onEnroll={handleEnroll} />
-
-      {loading ? (
-        <StatusMessage type="loading" />
-      ) : (
-        <>
-          {error && <StatusMessage type="error" />}
-
-          <StudentList students={students} title="Student Roster" getGrade={getGrade}>
-            <p>{`End of roster — ${students.length} total`}</p>
-          </StudentList>
-        </>
-      )}
-
-      <section className="actions-panel" aria-label="Roster actions">
-        <ClassButton
-          title="Refresh Roster"
-          className="secondary-button"
-          onClick={fetchRoster}
-        />
-      </section>
-    </main>
+      <main className="app">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                students={students}
+                loading={loading}
+                error={error}
+                averageScore={averageScore}
+                getGrade={getGrade}
+                onRefresh={fetchRoster}
+              />
+            }
+          />
+          <Route
+            path="/students/:id"
+            element={
+              <StudentDetailPage
+                students={students}
+                loading={loading}
+                getGrade={getGrade}
+              />
+            }
+          />
+          <Route
+            path="/enroll"
+            element={<EnrollPage tracks={TRACKS} onEnroll={handleEnroll} />}
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+    </>
   );
 };
 

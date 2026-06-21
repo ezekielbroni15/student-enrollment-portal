@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const StudentCard = ({
   student: {
+    id,
     firstName,
     lastName,
     email,
@@ -19,7 +22,9 @@ const StudentCard = ({
       />
 
       <h3>
-        {firstName} {lastName}
+        <Link to={`/students/${id}`} className="student-name-link">
+          {firstName} {lastName}
+        </Link>
       </h3>
 
       <p>{`${track} · ${email}`}</p>
